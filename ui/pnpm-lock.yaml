@@ -59,6 +59,9 @@ importers:
       blueband-db:
         specifier: https://github.com/acgodson/blueband.git#main
         version: https://codeload.github.com/acgodson/blueband/tar.gz/a55a96fce408eeb5f62e3cdf15e18981f3b3b6a9(bufferutil@4.0.7)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.23.8)
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       ethers:
         specifier: ^5.7.2
         version: 5.7.2(bufferutil@4.0.7)(utf-8-validate@6.0.3)

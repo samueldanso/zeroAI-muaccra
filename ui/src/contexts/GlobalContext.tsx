@@ -21,8 +21,8 @@ import {
   getDetailsFromNFTContract,
 } from '@/utils/helpers'
 import { useDisclosure } from '@chakra-ui/react'
-import AgentFactory from '@/contracts/abi/AgentFactory.json'
-import AgentTemplate from '@/contracts/abi/Agent.json'
+import AgentFactory from '../../contracts/contracts/abi/AgentFactory.json'
+import AgentTemplate from '../../contracts/contracts/abi/Agent.json' // Adjusted path for AgentTemplate
 
 interface GlobalContextType {
   isCollapsed: boolean
@@ -69,10 +69,7 @@ export const GlobalProvider: React.FC<{ children: ReactNode }> = ({
       let metadata: any
       const detailedData = await Promise.all(
         data.nftdeployeds.map(async (nft: any) => {
-          const details = await getDetailsFromNFTContract(
-            (nft as any).nftAddress,
-          )
-          // console.log(details);
+          const details = await getDetailsFromNFTContract(nft.nftAddress)
           if (!details) {
             return null
           }
@@ -85,10 +82,7 @@ export const GlobalProvider: React.FC<{ children: ReactNode }> = ({
         }),
       )
 
-      console.log(await data.nftdeployeds)
       if (detailedData) {
-        // console.log("details data", detailedData);
-        // setNftData(detailedData);
         setNftData(detailedData.filter((item) => item !== null))
       }
     }
@@ -179,7 +173,7 @@ export const GlobalProvider: React.FC<{ children: ReactNode }> = ({
     )
 
     if (!embeddedWallet) {
-      console.log('no embedded wallet wound')
+      console.log('no embedded wallet found')
       return
     }
     await embeddedWallet.switchChain(sepolia.id)

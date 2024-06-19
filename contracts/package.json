@@ -1,10 +1,21 @@
 {
+	"name": "contracts",
+	"version": "1.0.0",
+	"description": "Smart contracts for ZeroAI MU Hackathon",
+	"main": "hardhat.config.ts",
+	"scripts": {
+		"compile": "hardhat compile",
+		"deploy": "hardhat run scripts/deploy.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Your Name",
+	"license": "ISC",
 	"devDependencies": {
 		"@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
+		"dotenv": "^16.4.5",
 		"hardhat": "^2.22.4"
 	},
 	"dependencies": {
-		"@openzeppelin/contracts": "^5.0.2",
-		"@chainlink/functions-toolkit": "^0.2.7"
+		"@openzeppelin/contracts": "^5.0.2"
 	}
 }

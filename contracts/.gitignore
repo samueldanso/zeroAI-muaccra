@@ -1,45 +1,5 @@
 # Dependency directories
 node_modules/
 
-# Hardhat build artifacts
-artifacts/
-cache/
-
-# Typechain artifacts
-typechain/
-
-# Coverage directory used by solidity-coverage
-coverage/
-
-# dotenv environment variable files
+# Environment variables
 .env
-.env.local
-.env.*.local
-
-# Hardhat configuration files
-hardhat.config.ts
-hardhat.config.js
-
-# Temporary files
-*.tmp
-*.temp
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Log files
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# IDE files
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
-
-# Hardhat network dumps
-dump-
