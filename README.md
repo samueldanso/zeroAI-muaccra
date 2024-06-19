@@ -1,5 +1,5 @@
 <a href="https://zero-ai-gray.vercel.app/">
-  <img alt="ZeroAI" src="./public/screensho1.png">
+  <img alt="ZeroAI" src="./ui/public/screensho1.png">
   <h1 align="center">ZeroAI</h1>
 </a>
 
