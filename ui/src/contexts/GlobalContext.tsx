@@ -1,0 +1,218 @@
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react'
+import { usePrivy, useWallets } from '@privy-io/react-auth'
+import {
+  BiconomySmartAccountV2,
+  createSmartAccountClient,
+  LightSigner,
+} from '@biconomy/account'
+import { sepolia } from 'viem/chains'
+import { useQuery } from '@apollo/client'
+import client from '@/utils/apollo-client'
+import { GET_NFT_DEPLOYED } from '@/utils/queries'
+import {
+  callReadContract,
+  fetchContent,
+  getDetailsFromNFTContract,
+} from '@/utils/helpers'
+import { useDisclosure } from '@chakra-ui/react'
+import AgentFactory from '@/contracts/abi/AgentFactory.json'
+import AgentTemplate from '@/contracts/abi/Agent.json'
+
+interface GlobalContextType {
+  isCollapsed: boolean
+  setIsCollapsed: (isCollapsed: boolean) => void
+  index: number
+  setIndex: (index: number) => void
+  nftData: null | any[] | any
+  agents: null | any[] | any
+  setNftData: (index: null | any[] | any) => void
+  loadingMarket: boolean
+  smartAccountClient: () => Promise<BiconomySmartAccountV2 | undefined>
+  isOpen: boolean
+  onOpen: () => void
+  onClose: () => void
+}
+
+const GlobalContext = createContext<GlobalContextType | undefined>(undefined)
+
+export const GlobalProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
+  const [index, setIndex] = useState<number>(0)
+  const [nftData, setNftData] = useState<null | any[] | any>(null)
+  const [agents, setAgents] = useState<null | any[] | any>(null)
+  const { ready, authenticated, login } = usePrivy()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { wallets } = useWallets()
+  const embeddedWallet = wallets.find(
+    (wallet) => wallet.walletClientType !== 'privy',
+  )
+
+  const {
+    loading: loadingMarket,
+    error,
+    data,
+  } = useQuery(GET_NFT_DEPLOYED, {
+    variables: { first: 5 },
+    client,
+  })
+
+  useEffect(() => {
+    const fetchNFTDetails = async () => {
+      let metadata: any
+      const detailedData = await Promise.all(
+        data.nftdeployeds.map(async (nft: any) => {
+          const details = await getDetailsFromNFTContract(
+            (nft as any).nftAddress,
+          )
+          // console.log(details);
+          if (!details) {
+            return null
+          }
+          if (details.cid) {
+            metadata = await fetchContent(details.cid as string)
+            return { ...nft, ...details, metadata }
+          } else {
+            return { ...nft, ...details }
+          }
+        }),
+      )
+
+      console.log(await data.nftdeployeds)
+      if (detailedData) {
+        // console.log("details data", detailedData);
+        // setNftData(detailedData);
+        setNftData(detailedData.filter((item) => item !== null))
+      }
+    }
+
+    if (data && !nftData) {
+      fetchNFTDetails()
+    }
+
+    if (nftData) {
+      console.log('nft data', nftData)
+    }
+  }, [data, nftData])
+
+  useEffect(() => {
+    const fetchAgents = async () => {
+      try {
+        const factoryContract = process.env
+          .NEXT_PUBLIC_AGENTFACTORY_ADDRESS as `0x${string}`
+        const agentFactory = await callReadContract(
+          factoryContract,
+          'getAgentsByCreator',
+          AgentFactory.abi,
+          [embeddedWallet?.address as `0x${string}`],
+        )
+
+        if (agentFactory) {
+          const agentPromises = agentFactory.map(async (agent: any) => {
+            const agentAddress = agent.agentAddress
+            const agentInfo = await callReadContract(
+              agentAddress,
+              'getIndexInfo',
+              AgentTemplate.abi,
+              [],
+            )
+
+            if (agentInfo) {
+              const agentMetaData = await fetchContent(agent.cid)
+              return {
+                ...agent,
+                metadata: agentMetaData ?? null,
+                count: Number(agentInfo[2]),
+                version: Number(agentInfo[1]),
+              }
+            }
+
+            return null
+          })
+
+          const resolvedAgents = await Promise.all(agentPromises)
+          setAgents(resolvedAgents.filter((agent) => agent !== null))
+        }
+      } catch (error) {
+        console.error('Error fetching agents:', error)
+      }
+    }
+
+    if (embeddedWallet && !agents) {
+      fetchAgents()
+    }
+  }, [embeddedWallet, agents])
+
+  useEffect(() => {
+    if (agents) {
+      console.log('loaded agents', agents)
+    }
+  }, [agents])
+
+  async function smartAccountClient() {
+    if (!authenticated) {
+      console.error('not authenticated')
+      return
+    }
+    const provider = await walletClient()
+    return await createSmartAccountClient({
+      signer: provider?.getSigner() as LightSigner,
+      chainId: sepolia.id,
+      bundlerUrl: `https://bundler.biconomy.io/api/v2/${sepolia.id}/${
+        process.env.NEXT_PUBLIC_BUNDLER_ID as string
+      }`,
+      biconomyPaymasterApiKey: process.env.NEXT_PUBLIC_PAYMASTER_KEY,
+      rpcUrl: 'https://rpc.sepolia.org',
+    })
+  }
+
+  async function walletClient() {
+    const embeddedWallet = wallets.find(
+      (wallet) => wallet.walletClientType !== 'privy',
+    )
+
+    if (!embeddedWallet) {
+      console.log('no embedded wallet wound')
+      return
+    }
+    await embeddedWallet.switchChain(sepolia.id)
+    const provider = await embeddedWallet.getEthersProvider()
+    return provider
+  }
+
+  return (
+    <GlobalContext.Provider
+      value={{
+        isCollapsed,
+        setIsCollapsed,
+        index,
+        setIndex,
+        nftData,
+        loadingMarket,
+        setNftData,
+        smartAccountClient,
+        isOpen,
+        onOpen,
+        onClose,
+        agents,
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  )
+}
+
+export const useGlobalContext = () => {
+  const context = useContext(GlobalContext)
+  if (context === undefined) {
+    throw new Error('useGlobalContext must be used within a GlobalProvider')
+  }
+  return context
+}
