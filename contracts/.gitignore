@@ -1,12 +1,12 @@
 # Dependency directories
-
-# Truffle build artifacts
-build/
-truffle/build/
+node_modules/
 
 # Hardhat build artifacts
 artifacts/
 cache/
+
+# Typechain artifacts
+typechain/
 
 # Coverage directory used by solidity-coverage
 coverage/
@@ -15,6 +15,10 @@ coverage/
 .env
 .env.local
 .env.*.local
+
+# Hardhat configuration files
+hardhat.config.ts
+hardhat.config.js
 
 # Temporary files
 *.tmp
@@ -36,3 +40,6 @@ yarn-error.log*
 .vscode/
 *.sublime-project
 *.sublime-workspace
+
+# Hardhat network dumps
+dump-
