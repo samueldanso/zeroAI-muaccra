@@ -1,6 +1,4 @@
 # Dependency directories
-# Dependencies
-node_modules/
 
 # Truffle build artifacts
 build/
