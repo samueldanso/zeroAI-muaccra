@@ -73,19 +73,88 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 
 To get started with ZeroAI, follow these steps:
 
-1.Install the dependencies:
+1.clone the repository:
 
 ```bash
-npm install
+git clone https://github.com/samueldanso/zeroai-muaccra.git
+cd zeroai-muaccra
 ```
 
-2.Start the development server:
+2.Install the dependencies:
 
 ```bash
-npm run dev
+cd backend
+pnpm install
+cd ../ui
+pnpm install
+cd subgraph
+pnpm install
 ```
 
-3.Open your browser and navigate to http://localhost:3000 to access the ZeroAI interface.
+3.Configure the environment variables:
+
+```bash
+cp .env.example .env
+```
+
+4.Complie the smart contracts:
+
+```bash
+pnpm compile
+```
+
+5. Deploy the smart contracts to Sepolia testnet:
+
+```bash
+npx hardhat run scripts/deploy.js --network sepolia
+```
+
+6. Start the backend server:
+
+```bash
+cd backend
+pnpm start
+```
+
+7. Run the app:
+
+```bash
+cd ui
+pnpm run dev
+```
+
+Open your browser and navigate to http://localhost:3000 to access the ZeroAI interface.
+
+## GraphQL Queries
+
+### Example queries
+
+```Get all deployed NFTs
+{
+	nftdeployeds {
+		id
+		nftAddress
+		owner
+		blockNumber
+		blockTimestamp
+		transactionHash
+	}
+}
+```
+
+### Filter deployed NFTs by owner address
+
+```Filter deployed NFTs by owner address
+query GetNFTsByOwner($ownerAddress: Bytes!) {
+  nftdeployeds(where: { owner: $ownerAddress }) {
+    id
+    nftAddress
+    blockNumber
+    blockTimestamp
+    transactionHash
+  }
+}
+
 
 ## Contributing
 
@@ -94,3 +163,4 @@ We welcome contributions to the ZeroAI project. If you have any ideas or suggest
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more information.
+```
