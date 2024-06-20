@@ -7,6 +7,11 @@
  Making Information Accessible Anywhere, for Everyone with Zero Internet
 </p>
 
+<p align="center">
+  <a href="https://zero-ai.gitbook.io/zeroai-documentation">Documentation</a> |
+  <a href="https://www.canva.com/design/DAGIZY0qKaw/4CWKKXydqqtjdK0Es-mwiA/edit?utm_content=DAGIZY0qKaw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Presentation</a> |
+  <a href="https://youtu.be/gNJtqPOE6jY">Video Demo</a>
+
 ## Overview
 
 ZeroAI is a decentralized solution that provides offline access to AI agents, empowering millions of users in remote or underserved areas with limited internet connectivity to access vital information and knowledge via SMS chats. It leverages Filecoin for secure storage, NFTs for content access, and integrates with The Graph for reliable data management and connectivity.
