@@ -73,14 +73,14 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 
 To get started with ZeroAI, follow these steps:
 
-1.clone the repository:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/samueldanso/zeroai-muaccra.git
 cd zeroai-muaccra
 ```
 
-2.Install the dependencies:
+2. Install the dependencies:
 
 ```bash
 cd backend
@@ -91,21 +91,26 @@ cd subgraph
 pnpm install
 ```
 
-3.Configure the environment variables:
+3. Configure the environment variables:
 
 ```bash
+cd contracts
+cp .env.example .env
+cd ../ui
 cp .env.example .env
 ```
 
-4.Complie the smart contracts:
+4. Compile the smart contracts:
 
 ```bash
-pnpm compile
+cd contracts
+npx hardhat compile
 ```
 
 5. Deploy the smart contracts to Sepolia testnet:
 
 ```bash
+cd contracts
 npx hardhat run scripts/deploy.js --network sepolia
 ```
 
@@ -129,6 +134,8 @@ Open your browser and navigate to http://localhost:3000 to access the ZeroAI int
 
 ### Example queries
 
+**Get all deployed NFTs**
+
 ```Get all deployed NFTs
 {
 	nftdeployeds {
@@ -142,7 +149,7 @@ Open your browser and navigate to http://localhost:3000 to access the ZeroAI int
 }
 ```
 
-### Filter deployed NFTs by owner address
+**Filter deployed NFTs by owner address**
 
 ```Filter deployed NFTs by owner address
 query GetNFTsByOwner($ownerAddress: Bytes!) {
