@@ -28,7 +28,7 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 - [Lit Protocol](https://litprotocol.com/): Lit is an internet native security and identity network.
 - [Filecoin](https://filecoin.io/): Secure storage for AI content.
 - [The Graph](https://thegraph.com/): Decentralized data management and querying.
-- -[Apollo Client](https://www.apollographql.com/docs/react/): GraphQL client for the ZeroAI platform.
+- [Apollo Client](https://www.apollographql.com/docs/react/): GraphQL client for the ZeroAI platform.
 - [Express](https://expressjs.com/): Server-side framework for the ZeroAI platform.
 - [React](https://reactjs.org/): Frontend framework for user interfaces.
 - [Next.js](https://nextjs.org/): React framework for server-side rendering.
@@ -67,7 +67,7 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 
 ## Architecture Diagram
 
-![ZeroAI Architecture](./ui/public/architecture-diagram.png)
+![Architecture-Diagram](ui/public/architecture-diagram.png?raw=true 'Architecture Diagram')
 
 ## Getting Started
 
