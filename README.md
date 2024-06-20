@@ -67,7 +67,7 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 
 ## Architecture Diagram
 
-![Architecture-Diagram](ui/public/architecture-diagram.png?raw=true 'Architecture Diagram')
+![Architecture-Diagram](./ui/public/architecture-diagram.png?raw=true 'Architecture Diagram')
 
 ## Getting Started
 
