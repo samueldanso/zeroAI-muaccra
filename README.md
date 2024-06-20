@@ -73,7 +73,7 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 
 | **Contract**              | **Description**                                                                                                                                                                                              |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [**Session.sol**]()       | Manages sessions using Chainlink automation and Chainlink functions to track offline conversations between the AI agent and a phone number.                                                                  |
+|  |
 | [**AgentFactory.sol**]()  | Deploys a new AI agent by cloning the `AgentTemplate.sol`.                                                                                                                                                   |
 | [**AgentTemplate.sol**]() | The base contract for creating AI agents.                                                                                                                                                                    |
 | [**NFTFactory.sol**]()    | Deploys new NFTs used to token-gate datasets. AI agents can consume these datasets after minting/paying for the NFTs.                                                                                        |
