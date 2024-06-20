@@ -73,7 +73,7 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 
 | **Contract**              | **Description**                                                                                                                                                                                              |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|  |
+|                           |
 | [**AgentFactory.sol**]()  | Deploys a new AI agent by cloning the `AgentTemplate.sol`.                                                                                                                                                   |
 | [**AgentTemplate.sol**]() | The base contract for creating AI agents.                                                                                                                                                                    |
 | [**NFTFactory.sol**]()    | Deploys new NFTs used to token-gate datasets. AI agents can consume these datasets after minting/paying for the NFTs.                                                                                        |
@@ -156,20 +156,6 @@ Open your browser and navigate to http://localhost:3000 to access the ZeroAI int
 		blockTimestamp
 		transactionHash
 	}
-}
-```
-
-**Filter deployed NFTs by owner address**
-
-```Filter deployed NFTs by owner address
-query GetNFTsByOwner($ownerAddress: Bytes!) {
-  nftdeployeds(where: { owner: $ownerAddress }) {
-    id
-    nftAddress
-    blockNumber
-    blockTimestamp
-    transactionHash
-  }
 }
 ```
 
