@@ -11,7 +11,6 @@
   "dependencies": {
     "@apollo/client": "^3.10.4",
     "@biconomy/account": "^4.4.4",
-    "@chainlink/functions-toolkit": "^0.2.7",
     "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/react": "^2.8.2",
     "@covalenthq/client-sdk": "^1.0.2",
