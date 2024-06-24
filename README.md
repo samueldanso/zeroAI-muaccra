@@ -14,11 +14,11 @@
 
 ## Overview
 
-ZeroAI is a decentralized solution that provides offline access to AI agents, empowering millions of users in remote or underserved areas with limited internet connectivity to access vital information and knowledge via SMS chats. It leverages Filecoin for secure storage, NFTs for content access, and integrates with The Graph for reliable data management and connectivity.
+ZeroAI is a decentralized solution that provides offline access to AI agents, empowering millions of users in remote or underserved areas with limited internet connectivity to access vital information and knowledge via SMS and voice. It leverages Filecoin for secure storage, NFTs for content access, and integrates with The Graph for reliable data management and connectivity.
 
 ## Features
 
-- **User-Friendly SMS:** Easily ask questions and receive intelligent answers via text messages.
+- **User-Friendly SMS Chats :** Easily ask questions and receive intelligent answers via text messages.
 - **Offline AI Access:** AI agents provide responses via SMS, even without the internet.
 - **Decentralized Marketplace:** Securely publish and share AI-driven content using Filecoin for storage.
 - **Decentralized Storage:** Content is securely stored on Filecoin for decentralized management.
@@ -69,10 +69,6 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 5. **Data Management and Security:**
    - **Secure Storage:** All data, including content and user interactions, is securely stored on Filecoin, ensuring decentralized and reliable data management.
    - **NFT-based Access Control:** The use of NFT contracts ensures that only authorized users can access and decrypt content, providing an additional layer of security.
-
-## Architecture Diagram
-
-![Architecture-Diagram](./ui/public/architecture-diagram.png?raw=true 'Architecture Diagram')
 
 ## Contracts
 
@@ -144,25 +140,6 @@ pnpm run dev
 ```
 
 Open your browser and navigate to http://localhost:3000 to access the ZeroAI interface.
-
-## GraphQL Queries
-
-### Example queries
-
-**Get all deployed NFTs**
-
-```Get all deployed NFTs
-{
-	nftdeployeds {
-		id
-		nftAddress
-		owner
-		blockNumber
-		blockTimestamp
-		transactionHash
-	}
-}
-```
 
 ## Contributing
 
