@@ -1,4 +1,4 @@
-<a href="https://zero-ai-gray.vercel.app/">
+<a href="/">
   <img alt="ZeroAI" src="./ui/public/screenshot1.png" width="100%" />
   <h1 align="center">ZeroAI</h1>
 </a>
@@ -8,9 +8,8 @@
 </p>
 
 <p align="center">
-  <a href="https://zero-ai.gitbook.io/zeroai-documentation">Documentation</a> |
-  <a href="https://www.canva.com/design/DAGIZY0qKaw/4CWKKXydqqtjdK0Es-mwiA/edit?utm_content=DAGIZY0qKaw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Presentation</a> |
-  <a href="https://youtu.be/gNJtqPOE6jY">Video Demo</a>
+  <a href="https://zero-ai-gray.vercel.app/">Demo</a>
+  <a href="https://zero-ai.gitbook.io/zeroai-documentation">Docs</a> |
 
 ## Overview
 
@@ -81,8 +80,6 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 | [**PayableNFT.sol**]()    | NFT Contract representing a published data. It is used as an access condition while encrypting documents with Lit Protocol. So users can get access to an AI by paying and minting an NFT from the contract. |
 
 ## Getting Started
-
-To get started with ZeroAI, follow these steps:
 
 1. Clone the repository:
 
