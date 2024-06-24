@@ -8,8 +8,8 @@
 </p>
 
 <p align="center">
-  <a href="https://zero-ai-gray.vercel.app/">Demo</a>
-  <a href="https://zero-ai.gitbook.io/zeroai-documentation">Docs</a> |
+  <a href="https://zero-ai-gray.vercel.app/">Demo</a> |
+  <a href="https://zero-ai.gitbook.io/zeroai-documentation">Docs</a>
 
 ## Overview
 
@@ -47,27 +47,27 @@ ZeroAI is a decentralized solution that provides offline access to AI agents, em
 
 1. **Content Publishing and Storage:**
 
-   - **Decentralized Marketplace:** Creators publish new or existing content on the ZeroAI marketplace. This content is stored securely on Filecoin, a decentralized storage solution.
-   - **NFT Integration:** Each piece of content is associated with an NFT contract. This ensures that only authorized users (NFT holders) can decrypt and access the content. The signing and encryption are managed by the Lit Protocol.
+   - **Decentralized Marketplace:** Creators publish content on the ZeroAI marketplace, stored securely on Filecoin.
+   - **NFT Integration:** Each content piece is linked to an NFT, ensuring only NFT holders can decrypt and access it via the Lit Protocol.
 
-2. **Content Consumption by AI Agents:**
+2. **AI Agents and Content Consumption:**
 
-   - **Vectorization and Embedding:** AI agents on the platform can access the published content, vectorize it, and embed it into their knowledge base. This enables the agents to provide intelligent responses to user queries.
-   - **IPNS and FVM Logging:** The InterPlanetary Naming System (IPNS) allows AI agents to update and manage their knowledge base pointers. They also log hashes of indexed vectors on a smart contract deployed on the Filecoin Virtual Machine (FVM) for tracking.
+   - **Vectorization and Embedding:** AI agents access, vectorize, and embed published content into their knowledge bases for intelligent responses.
+   - **IPNS and FVM Logging:** AI agents update knowledge base pointers using IPNS and log indexed vector hashes on a smart contract on the Filecoin Virtual Machine (FVM).
 
 3. **User Interaction via SMS:**
 
-   - **SMS Queries:** Users can interact with AI agents by sending queries via SMS from an authorized phone number. The SMS provider, Twilio, forwards these queries to the ZeroAI backend using a pre-configured webhook.
-   - **Simple Addressing:** Each AI agent can be accessed using short, memorable names (ENS names) or phone numbers, simplifying user interaction.
+   - **SMS Queries:** Users interact with AI agents by sending queries via SMS through Twilio to the ZeroAI backend.
+   - **Simple Addressing:** AI agents are accessible through short names (ENS names) or phone numbers.
 
 4. **Backend Processing and AI Responses:**
 
-   - **Query Handling:** Upon receiving a query, the backend processes it and matches it with the appropriate AI agent. The agent performs similarity checks between the user's prompt and its knowledge base.
-   - **Response Generation:** The AI agent generates a natural language response based on the query and its embedded knowledge. This response is then sent back to the user via SMS.
+   - **Query Handling:** The backend matches user queries with the appropriate AI agent, which performs similarity checks with its knowledge base.
+   - **Response Generation:** The AI agent generates and sends a natural language response to the user via SMS.
 
 5. **Data Management and Security:**
-   - **Secure Storage:** All data, including content and user interactions, is securely stored on Filecoin, ensuring decentralized and reliable data management.
-   - **NFT-based Access Control:** The use of NFT contracts ensures that only authorized users can access and decrypt content, providing an additional layer of security.
+   - **Secure Storage:** Data, including content and user interactions, is securely stored on Filecoin.
+   - **NFT-based Access Control:** NFTs ensure only authorized users can access and decrypt content.
 
 ## Contracts
 
